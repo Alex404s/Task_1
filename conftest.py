@@ -2,6 +2,7 @@ import pytest
 from bun import Bun
 from ingredient import Ingredient
 from burger import Burger
+from database import Database
 
 @pytest.fixture
 def test_bun():
@@ -17,3 +18,8 @@ def test_ingredient():
 def test_burger():
     test_burger = Burger()
     return test_burger
+
+@pytest.fixture
+def test_database():
+    test_database = Database()
+    return test_database
