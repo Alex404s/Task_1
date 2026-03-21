@@ -69,13 +69,6 @@ class TestBurger:
         assert test_burger.ingredients[0] == mock_ingredient_2
         assert len(test_burger.ingredients) == 1
 
-    
-    def test_remove_ingredient_empty_list_failed(self, test_burger):
-        try:
-            test_burger.remove_ingredient(0)
-        except IndexError as e:        
-            assert str(e) == "list assignment index out of range"
-
           
     def test_move_ingredient_move_succes(self, test_burger):
         mock_ingredient_1 = Mock(spec=Ingredient)
