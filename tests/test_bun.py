@@ -1,6 +1,3 @@
-import pytest
-
-
 class TestBun:
 
     def test_get_name_success(self, test_bun):        

@@ -1,6 +1,3 @@
-import pytest
-
-
 class TestIngredient:
 
     def test_get_price_success(self, test_ingredient):

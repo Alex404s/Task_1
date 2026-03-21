@@ -1,6 +1,5 @@
 from bun import Bun
 from ingredient import Ingredient
-import pytest
 from unittest.mock import Mock
 
 
