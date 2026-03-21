@@ -3,34 +3,59 @@ from unittest.mock import Mock
 from unittest.mock import patch
 from bun import Bun
 from ingredient import Ingredient
+from data import DataTestBurger
 
 
 
 class TestBurger:
 
-    def test_set_buns_success(self, test_burger):
+    def test_set_buns_name_success(self, test_burger):
         mock_bun = Mock(spec=Bun)
         mock_bun.name = 'Лаваш'
-        mock_bun.price = 25
         test_burger.set_buns(mock_bun)
         
-        assert test_burger.bun.name == 'Лаваш'
+        assert test_burger.bun.name == 'Лаваш'        
+
+
+    def test_set_buns_price_success(self, test_burger):
+        mock_bun = Mock(spec=Bun)        
+        mock_bun.price = 25
+        test_burger.set_buns(mock_bun)        
+        
         assert test_burger.bun.price == 25
 
    
-    @pytest.mark.parametrize('type, name, price', [[1, 2, 3],
-                                                   ['Начинка', 'Петрушка', 'пять рублей'],
-                                                   [1.5, 2.5, 3.5]])
-    def test_add_ingredient_success(self, test_burger, type, name, price):
+    @pytest.mark.parametrize('type', [DataTestBurger.type_int_list])
+    def test_add_ingredient_check_type_success(self, test_burger, type):
         mock_ingredient = Mock(spec=Ingredient)
         mock_ingredient.ingredient_type = type
-        mock_ingredient.name = name
-        mock_ingredient.price = price
         test_burger.add_ingredient(mock_ingredient)
         
         assert test_burger.ingredients[0].ingredient_type == type
-        assert test_burger.ingredients[0].name == name
-        assert test_burger.ingredients[0].price == price
+
+
+    @pytest.mark.parametrize('name', [DataTestBurger.name_str_list])
+    def test_add_ingredient_check_name_success(self, test_burger, name):
+        mock_ingredient = Mock(spec=Ingredient)        
+        mock_ingredient.name = name        
+        test_burger.add_ingredient(mock_ingredient)        
+        
+        assert test_burger.ingredients[0].name == name        
+
+    
+    @pytest.mark.parametrize('price', [DataTestBurger.price_float_list])
+    def test_add_ingredient_check_price_success(self, test_burger, price):
+        mock_ingredient = Mock(spec=Ingredient)           
+        mock_ingredient.price = price
+        test_burger.add_ingredient(mock_ingredient)        
+        
+        assert test_burger.ingredients[0].price == price   
+
+
+    def test_add_ingredient_success(self, test_burger):
+        mock_ingredient = Mock(spec=Ingredient)
+        test_burger.add_ingredient(mock_ingredient)        
+
         assert test_burger.ingredients[0] == mock_ingredient
 
 
